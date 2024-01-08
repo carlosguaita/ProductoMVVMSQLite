@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProductoMVVMSQLite.Views.ProductoPage"
+             Title="ProductoPage">
+    <VerticalStackLayout>
+
+        <HorizontalStackLayout
+            BackgroundColor="DarkBlue">
+            <Image
+                Source="dotnet_bot.png"
+                HeightRequest="50"
+                WidthRequest="100"
+                />
+            <Label 
+                x:Name="Username"
+                Text="Productos"
+                FontSize="30"
+                TextColor="White"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+        <Button
+            Text="Nuevo Producto"
+            FontSize="20"
+            HorizontalOptions="Fill"
+            Command="{Binding CrearProducto}"/>
+
+        <ListView x:Name="listaProductos"
+                  RowHeight="80"
+                  ItemsSource="{Binding ListaProductos}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="dotnet_bot.png"
+                                   HeightRequest="50"
+                                   WidthRequest="100"/>
+                            <StackLayout Orientation="Vertical">
+                                <Label
+                                    Text="{Binding Nombre}"
+                                    VerticalOptions="Start"
+                                    FontSize="20"/>
+                                <Label
+                                    Text="{Binding Cantidad}"
+                                    VerticalOptions="End"
+                                    FontSize="20"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+
+        </ListView>
+
+
+
+    </VerticalStackLayout>
+</ContentPage>
