@@ -1,4 +1,5 @@
 ﻿using ProductoMVVMSQLite.Models;
+using ProductoMVVMSQLite.Utils;
 using ProductoMVVMSQLite.Views;
 using PropertyChanged;
 using System;
@@ -14,11 +15,13 @@ namespace ProductoMVVMSQLite.ViewModels
     [AddINotifyPropertyChangedInterface]
     public class ProductoViewModel
     {
-        ObservableCollection<Producto> ListaProductos { get; set; }
+        public ObservableCollection<Producto> ListaProductos { get; set; }
 
-        public ProductoViewModel() { 
-            
-            ListaProductos = new ObservableCollection<Producto>(App.productoRepository.GetAll());
+        public ProductoViewModel() {
+
+            Util.ListaProductos = App.productoRepository.GetAll();
+
+            ListaProductos = new ObservableCollection<Producto>(Util.ListaProductos);
         
         }
 
