@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProductoMVVMSQLite.Views.ProductoPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="ProductoPage">
+ 
     <VerticalStackLayout>
 
         <HorizontalStackLayout
@@ -26,14 +28,24 @@
             HorizontalOptions="Fill"
             Command="{Binding CrearProducto}"/>
 
-        <ListView x:Name="listaProductos"
-                  RowHeight="80"
-                  ItemsSource="{Binding ListaProductos}">
-            <ListView.ItemTemplate>
+        <CollectionView x:Name="listaProductos"
+                  SelectedItem="{Binding ProductoSeleccionado}"
+                  ItemsSource="{Binding ListaProductos}"
+                  SelectionMode="Single"
+                  SelectionChangedCommand="{Binding EditarProducto}"
+                  >
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    ItemSpacing="10"
+                    Orientation="Vertical"
+                    SnapPointsAlignment="Start"
+                    SnapPointsType="MandatorySingle" />
+                </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
+               
                         <StackLayout Orientation="Horizontal">
-                            <Image Source="dotnet_bot.png"
+                            <Image Source="{Binding ImagenProducto}"
                                    HeightRequest="50"
                                    WidthRequest="100"/>
                             <StackLayout Orientation="Vertical">
@@ -48,13 +60,13 @@
                             </StackLayout>
                         </StackLayout>
 
-                    </ViewCell>
+               
 
                 </DataTemplate>
-            </ListView.ItemTemplate>
+            </CollectionView.ItemTemplate>
 
 
-        </ListView>
+        </CollectionView>
 
 
 

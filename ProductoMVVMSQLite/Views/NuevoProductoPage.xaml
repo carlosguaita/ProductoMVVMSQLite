@@ -4,6 +4,11 @@
              x:Class="ProductoMVVMSQLite.Views.NuevoProductoPage"
              Title="NuevoProductoPage">
     <VerticalStackLayout>
+        <Image Source="{Binding ImagenProducto}"
+           HorizontalOptions="Center"
+           HeightRequest="200"/>
+        <Button Text="Tomar Foto"
+                Command="{Binding TomarFoto}"/>
          <TableView>
             <TableRoot>
                 <TableSection Title="Ingrese los datos para un nuevo producto">

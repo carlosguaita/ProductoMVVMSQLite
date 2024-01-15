@@ -17,11 +17,12 @@ namespace ProductoMVVMSQLite.ViewModels
     {
         public ObservableCollection<Producto> ListaProductos { get; set; }
 
+        public Producto ProductoSeleccionado {get;set;}
+
         public ProductoViewModel() {
+            Util.ListaProductos = new ObservableCollection<Producto>(App.productoRepository.GetAll());
 
-            Util.ListaProductos = App.productoRepository.GetAll();
-
-            ListaProductos = new ObservableCollection<Producto>(Util.ListaProductos);
+            ListaProductos = Util.ListaProductos;
         
         }
 
@@ -29,6 +30,20 @@ namespace ProductoMVVMSQLite.ViewModels
             new Command(async () =>
             {
                await App.Current.MainPage.Navigation.PushAsync(new NuevoProductoPage());
+            });
+
+        public ICommand EditarProducto =>
+            new Command(async () =>
+            {
+                if (ProductoSeleccionado != null)
+                {
+                    int IdProducto = ProductoSeleccionado.IdProducto;
+                    //ProductoSeleccionado = null;
+                    await App.Current.MainPage.Navigation.PushAsync(new NuevoProductoPage(IdProducto));
+                    ProductoSeleccionado = null;
+                }
+              
+
             });
 
     }

@@ -9,4 +9,10 @@ public partial class NuevoProductoPage : ContentPage
 		InitializeComponent();
 		BindingContext = new NuevoProductoViewModel();
 	}
+
+    public NuevoProductoPage(int IdProducto)
+    {
+        InitializeComponent();
+        BindingContext = new NuevoProductoViewModel(IdProducto);
+    }
 }
